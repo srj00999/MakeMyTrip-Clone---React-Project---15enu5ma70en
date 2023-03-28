@@ -1,0 +1,15 @@
+.footer{
+    background-color: black;
+}
+
+.footer p{
+    color: white;
+    margin: 0px;
+    text-align: end;
+    justify-content: center;
+    font-size: large;
+}
+.footer span p{
+    margin: 0px;
+    
+}
