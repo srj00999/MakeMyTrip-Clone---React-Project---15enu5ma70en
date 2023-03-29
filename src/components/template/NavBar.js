@@ -1,24 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './NavBar.css'
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
+    
     return (
         <Row className="navbar">
             <Col >
                 <div >
-                    <Link to='/flights'>Flights</Link>
+                    <NavLink to='/flights'>Flights</NavLink>
                 </div>
             </Col>
             <Col>
                 <div>
-                    <Link to='/Hotels'>Hotels</Link>
+                    <NavLink to='/Hotels'>Hotels</NavLink>
                 </div>
             </Col>
             <Col>
-                <div><Link to='/Trains'>Trains</Link>
+                <div><NavLink to='/Trains'>Trains</NavLink>
                 </div>
             </Col>
         </Row>
