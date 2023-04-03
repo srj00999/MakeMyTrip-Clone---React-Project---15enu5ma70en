@@ -14,6 +14,7 @@ import LoginData from './template/LoginRegister/LoginData';
 import Register from './template/LoginRegister/Register';
 import NotFound from './template/NotFound';
 import DataApp from './DataApp';
+import HotelsData from './template/Hotel/HotelsData';
 
 
 const App = () => {
@@ -23,13 +24,12 @@ const App = () => {
       <DataApp>
         <Container fluid>
           <Home />
-
-
           <Routes>
             <Route path='/flights' element={<Flights />}>
-              <Route path='flightData' element={<FlightData />} />
+              <Route path='flightData' element={<FlightData />}/>
             </Route>
             <Route path='/hotels' element={<Hotels />} />
+            <Route path='/hotelsData' element={<HotelsData/>}/>
             <Route path='/trains' element={<Trains />} />
             <Route path='/LoginData' element={<LoginData />} />
             <Route path='/LoginRegister' element={<LoginRegister />} />

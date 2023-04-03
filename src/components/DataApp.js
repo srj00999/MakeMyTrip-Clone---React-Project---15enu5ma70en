@@ -9,6 +9,11 @@ const DataApp = (props) => {
         // username: '', //username
         searchFrom: '',
         searchTo: '',
+        cityOrLocation: '',
+        checkInData:'',
+        checkOutDta:'',
+        guest:''
+
         // searchDate: ''
     }
     const [appState, setAppState] = useState(initialState);

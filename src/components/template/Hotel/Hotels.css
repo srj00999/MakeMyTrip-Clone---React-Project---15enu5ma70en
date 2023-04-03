@@ -1,0 +1,22 @@
+label{
+    font-weight: bold;
+    font-size: 20px;
+}
+input{
+    width: 240px;
+    height: 30px;
+}
+select{
+    width: 240px;
+    height: 30px;
+}  
+
+.hotel_container{
+    border-bottom: 2px solid blue;
+}
+.flex-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
