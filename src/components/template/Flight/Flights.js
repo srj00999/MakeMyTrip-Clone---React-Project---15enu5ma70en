@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, Suspense, lazy } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataAppContext } from "../../DataApp";
 import FlightData from "./FlightData";
 import { Row, Col } from "react-bootstrap";
-
-
+import "../Flight/Flights.css";
 
 
 export default function Flights() {
@@ -13,20 +12,15 @@ export default function Flights() {
         to: "",
     });
 
+    const [pageStatus, setPageStatus] = useState(false);
+
     const localContext = useContext(DataAppContext);
     const { appState, setAppState } = localContext;
     const navigate = useNavigate();
 
 
-
-
     const updateData = (e) => {
-        // console.log(e.target.id, e.target.value);
-        // let tempObj = {};
-        // tempObj[e.target.id] = e.target.value.trim();
-        // setFormdata({
-        //   ...tempObj
-        // });
+
         const { name, value } = e.target;
         if (name === "from") {
             setFormdata((prev) => ({ ...prev, from: value }));
@@ -44,16 +38,18 @@ export default function Flights() {
             searchFrom: formdata.from,
             searchTo: formdata.to
         });
+        setPageStatus(true);
     }
     return (
         <>
-            <div>
+            <div className="flightcontainer">
                 <form onSubmit={handleSubmit}>
-                    <Row className="flight_container">
-                        <Col className="flex-container">
-                            <span>
-                                <label>FROM</label><br></br>
-                                <select id="from" name="from" onChange={updateData}>
+                    <Row >
+                        <Col >
+                            <span >
+                                <label >FROM</label><br></br>
+                                <select className="selectoption" id="from" name="from" onChange={updateData}>
+                                    <option value="Kashmir">Kashmir</option>
                                     <option value="Delhi">Delhi</option>
                                     <option value="Mumbai">Mumbai</option>
                                     <option value="Kolkata">Kolkata</option>
@@ -62,38 +58,41 @@ export default function Flights() {
                             </span>
 
                         </Col>
-                        <Col className="flex-container">
+                        <Col >
                             <span>
                                 <label>TO</label><br></br>
-                                <select id="to" name="to" onChange={updateData}>
+                                <select className="selectoption" id="to" name="to" onChange={updateData}>
                                     <option value="Mumbai">Mumbai</option>
                                     <option value="Goa">Goa</option>
                                     <option value="Kolkata">Kolkata</option>
+                                    <option value="Kashmir">Kashmir</option>
                                     <option value="Banglore">Banglore</option>
                                 </select>
                             </span>
                         </Col>
-                        <Col className="flex-container">
+                        <Col >
                             <span>
                                 <label>DEPARTURE</label><br></br>
-                                <input type='date'></input>
+                                <input className="selectoption" type='date'></input>
                             </span>
                         </Col>
-                        <Col className="flex-container">
+                        <Col >
                             <span>
                                 <label>RETURN</label><br></br>
-                                <input type='date'></input>
+                                <input className="selectoption" type='date'></input>
                             </span>
                         </Col>
-
-                        <button  value="submit" onSubmit={handleSubmit}>Submit</button>
+                        <Row className="btncontainer">
+                            <button className="selectbtn" value="submit" onSubmit={handleSubmit}>Search</button>
+                        </Row>
 
                     </Row>
                 </form>
-                
-                <FlightData />
             </div>
-            
+            <div className="divline"></div>
+
+            {pageStatus && <div > <FlightData /></div>
+            }
 
         </>
     )

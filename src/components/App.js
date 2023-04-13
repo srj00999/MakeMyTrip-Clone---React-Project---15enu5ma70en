@@ -6,15 +6,17 @@ import Footer from './template/Footer';
 import Flights from './template/Flight/Flights';
 import Hotels from './template/Hotel/Hotels';
 import Trains from './template/Train/Trains';
-import Login from './template/LoginRegister/Login';
 import Home from './template/Home';
 import FlightData from './template/Flight/FlightData';
-import LoginRegister from './template/LoginRegister/LoginRegister';
-import LoginData from './template/LoginRegister/LoginData';
-import Register from './template/LoginRegister/Register';
 import NotFound from './template/NotFound';
 import DataApp from './DataApp';
 import HotelsData from './template/Hotel/HotelsData';
+import TrainData from './template/Train/TrainData';
+import Login from './template/LoginRegister/Login';
+import Register from './template/LoginRegister/Register';
+import CheckOut from './template/CheckOut';
+
+
 
 
 const App = () => {
@@ -22,24 +24,26 @@ const App = () => {
   return (
     <div id="main">
       <DataApp>
-        <Container fluid>
+        <Container fluid style={{ minHeight: "100vh", position: "relative" }}>
           <Home />
-          <Routes>
-            <Route path='/flights' element={<Flights />}>
-              <Route path='flightData' element={<FlightData />}/>
-            </Route>
-            <Route path='/hotels' element={<Hotels />} />
-            <Route path='/hotelsData' element={<HotelsData/>}/>
-            <Route path='/trains' element={<Trains />} />
-            <Route path='/LoginData' element={<LoginData />} />
-            <Route path='/LoginRegister' element={<LoginRegister />} />
-            <Route path='/login' element={<Login />}></Route>
-            <Route path='/' element={<Login />} />
-            <Route path='/*' element={<NotFound />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/flightData' element={<FlightData />} />
+          
+          <div style={{ paddingBottom: "40px" }}>
+            <Routes style={{ paddingBottom: "40px" }}>
+              <Route path='/flights' element={<Flights />} />>
+              <Route path='flightData' element={<FlightData />} />
+              <Route path='/hotels' element={<Hotels />} />
+              <Route path='/hotelsData' element={<HotelsData />} />
+              <Route path='/trains' element={<Trains />} />
+              <Route path='/traindata' element={<TrainData />} />
+              <Route path='/*' element={<NotFound />} />
+              <Route path='/flightData' element={<FlightData />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/checkout' element={<CheckOut />} />
+              <Route path='/' element={<Flights />} />
 
-          </Routes>
+            </Routes>
+          </div>
 
           <Footer />
         </Container>

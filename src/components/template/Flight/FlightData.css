@@ -1,5 +1,12 @@
+.flightdatacontainer{
+    position: relative;
+    height: 100vh;
+}
+
+
 .container{
     border: 2px solid blue;
+    margin-bottom: 100px;
     
 }
 .container_row{
@@ -32,4 +39,8 @@ div h1{
     margin-bottom: 50px;
 
     font-weight: bold;
+}
+.buttoncontainer{
+    display: flex;
+    flex-direction: column-reverse;
 }

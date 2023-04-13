@@ -1,5 +1,11 @@
+
 .footer{
     background-color: black;
+    position:absolute ;
+    left: 0;
+
+    bottom: 0; 
+    width: 100%;    
 }
 
 .footer p{

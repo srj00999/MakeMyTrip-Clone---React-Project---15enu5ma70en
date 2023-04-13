@@ -8,20 +8,20 @@ import HotelsData from "./HotelsData";
 export default function Hotels() {
 
     const initialData = {
-        location:'',
-        checkIn:'',
-        checkOut:'',
-        guest:''
+        location: '',
+        checkIn: '',
+        checkOut: '',
+        guest: ''
     }
 
-
+    const [pageStatus, setPageStatus] = useState(false);
     const [formData, setFormData] = useState(initialData);
 
     const localContext = useContext(DataAppContext);
     const { appState, setAppState } = localContext;
 
 
-    const updateData = (e)=> {
+    const updateData = (e) => {
         // console.log( e.target.id,  e.target.value );
         let tempObj = {};
         tempObj[e.target.id] = e.target.value;
@@ -30,32 +30,29 @@ export default function Hotels() {
         });
     }
 
-    
 
-    const handleFormData =(e)=>{
+
+    const handleFormData = (e) => {
         e.preventDefault();
-       setAppState({
-        ...appState,
-        cityOrLocation: formData.location,
-        checkInData:formData.checkIn,
-        checkOutDta:formData.checkOut,
-        guest:formData.guest
-        
-       });
-   }
+        setAppState({
+            ...appState,
+            cityOrLocation: formData.location,
+            checkInData: formData.checkIn,
+            checkOutDta: formData.checkOut,
+            guest: formData.guest
 
-
-
-
+        });
+        setPageStatus(true);
+    }
     return (
         <>
-            <div>
+            <div className="flightcontainer">
                 <form onSubmit={handleFormData}>
-                    <Row className="hotel_container">
-                        <Col className="flex-container">
+                    <Row >
+                        <Col>
                             <span>
                                 <label>CITY, OR LOCATION</label><br></br>
-                                <select id="location" name="location" onChange={updateData} >
+                                <select className="selectoption" id="location" name="location" onChange={updateData} >
                                     <option value="Goa">Goa</option>
                                     <option value="Delhi">Delhi</option>
                                     <option value="Mumbai">Mumbai</option>
@@ -63,30 +60,35 @@ export default function Hotels() {
                                 </select>
                             </span>
                         </Col>
-                        <Col className="flex-container" >
+                        <Col  >
                             <span><label>CHECK-IN</label><br></br>
-                                <input type='date' id="checkIn" onChange={updateData}></input></span>
+                                <input className="selectoption" type='date' id="checkIn" onChange={updateData}></input></span>
                         </Col>
-                        <Col className="flex-container" >
+                        <Col  >
                             <span>
                                 <label>CHECK-OUT</label><br></br>
-                                <input type='date' id="checkOut" onChange={updateData}></input>
+                                <input className="selectoption" type='date' id="checkOut" onChange={updateData}></input>
                             </span>
                         </Col>
-                        <Col className="flex-container" >
+                        <Col  >
                             <span>
                                 <label>GUESTS</label><br></br>
-                                <input type='number' id="guest" onChange={updateData}></input>
+                                <input className="selectoption" type='number' id="guest" onChange={updateData}></input>
                             </span>
                         </Col>
+                        <Row className="btncontainer">
+                            <button className="selectbtn" value="submit" onSubmit={handleFormData}>Search</button>
+
+                        </Row>
 
                     </Row>
-                    <button type="submit" value='submit' onSubmit={handleFormData}>Search</button>
+
                 </form>
             </div>
-            <div>
-                <HotelsData/>
-            </div>
+            <div className="divline"></div>
+
+
+            {pageStatus && <div > <HotelsData /></div>}
         </>
     )
 }

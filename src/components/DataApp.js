@@ -10,21 +10,26 @@ const DataApp = (props) => {
         searchFrom: '',
         searchTo: '',
         cityOrLocation: '',
-        checkInData:'',
-        checkOutDta:'',
-        guest:''
+        checkInData: '',
+        checkOutDta: '',
+        guest: '',
+        loginStatus: false, //false means not logged in
+        username: '', //username
+        searchDate: '',
+        password: '',
+        baseFare: ''
 
         // searchDate: ''
     }
     const [appState, setAppState] = useState(initialState);
 
     useEffect(() => {
-        console.log('Context Data - ', appState);
+        // console.log('Context Data - ', appState);
     })
 
     return (
         <>
-            <DataAppContext.Provider value={{appState, setAppState }}>
+            <DataAppContext.Provider value={{ appState, setAppState }}>
                 {props.children}
             </DataAppContext.Provider>
 

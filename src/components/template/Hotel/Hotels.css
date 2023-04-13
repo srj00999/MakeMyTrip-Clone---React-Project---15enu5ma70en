@@ -1,22 +1,45 @@
-label{
-    font-weight: bold;
-    font-size: 20px;
-}
-input{
-    width: 240px;
-    height: 30px;
-}
-select{
-    width: 240px;
-    height: 30px;
-}  
+.flightcontainer{
+    
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+    margin-bottom: 200px;
 
-.hotel_container{
-    border-bottom: 2px solid blue;
 }
-.flex-container{
+.selectoption{
+    width: 400px;
+    height: 40px;
+    padding:10px
+       
+}
+label{
+    font-size: 17px;
+    font-weight: 620;
+}
+.selectbtn{
+
+    width: 400px;
+    height: 40px;
+    border: 3px solid black;
+    margin-right: 200px;
+    border-radius: 10px;
+
+}
+
+.divline{
+    border: 1px solid lightblue;
+    width: 95%;
+   position: absolute;
+   top: 400px;
+   z-index: -1;
+}
+
+.btncontainer{
+    max-width: 96%;
     display: flex;
     justify-content: center;
-    margin-top: 80px;
-    margin-bottom: 80px;
+    position: absolute;
+    top: 385px; 
+     
 }
+

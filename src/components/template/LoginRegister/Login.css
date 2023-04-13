@@ -1,0 +1,31 @@
+.logindatacontainer{
+    position: relative;
+    height: 100vh;
+}
+
+
+.inputbox{
+    width: 450px;
+    margin-top: 0px;
+    padding: 20px;
+    border-radius: 3px;
+}
+
+.loginbtn{
+    width: 450px;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: blue;
+    color: white;
+}
+.logincontainer{
+    margin: 0;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.errormsg{
+    margin-right: 280px;
+}

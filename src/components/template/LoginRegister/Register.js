@@ -1,68 +1,114 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import '../LoginRegister/Register.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from 'react-router-dom';
 
 
-export default function Register() {
-    const[fname,setFirstName] = useState('');
-    const[lname,setLastName] = useState('');
-    const[age,setAge] = useState('');
-    const[email,setEmail] = useState('');
+
+const Register = () => {
+
+    const initialData = {
+        username: '',
+        password: '',
+    }
 
 
-    const navigate = useNavigate()
+    const [formdata, setFormdata] = useState(initialData);
+    const [formerror, setFormerror] = useState({});
 
-   const handleRegister = (e)=>{
-    e.preventDefault();
+    const [status, setStatus] = useState(false);
 
-    axios.post('https://6419621429e7e36438fc1184.mockapi.io/crud',{
-        e_fname :fname,
-        e_lname:lname,
-        e_age: age,
-        e_email:email
-    }).then(()=>{
-        navigate('/login');
-        alert("Registered successfully");
-    })
+    const navigate  = useNavigate();
 
-   }
+
+    const updateData = (e) => {
+
+        let tempObj = {};
+        tempObj[e.target.id] = e.target.value.trim();
+        setFormdata({
+            ...formdata, ...tempObj
+        });
+    }
+
+
+    const registerFn = () => {
+
+        const ret = validationFn();
+
+        if (ret) {
+
+            setStatus(true);
+
+            let temp = JSON.parse(localStorage.getItem('users')) || [];
+            localStorage.setItem('users', JSON.stringify([...temp, formdata]));
+
+            setFormdata(initialData);
+
+            if (setStatus) {
+                setTimeout(() => {
+                    navigate('/login');
+                }
+                    , 2000);
+            }
+        }
+
+    }
+
+    useEffect(() => {
+        let temp = localStorage.getItem('users');
+
+    }, [status])
+
+    const validationFn = () => {
+
+        let errorObj = {};
+
+        if (formdata.username === '') {
+            errorObj.username = 'UserName is empty'
+        }
+
+        if (formdata.password === '') {
+            errorObj.password = 'Password is empty'
+        }
+
+        setFormerror(errorObj);
+
+        if (Object.keys(errorObj).length > 0) {
+            return false
+        }
+        else {
+            return true
+        }
+
+    }
+
     return (
-        <>
-            <div className="row d-flex justify-content-sm-end p-4">
-                <div className="col-md-4">
-                    <div className="bg-primary p-4 text center d-flex justify-content-between" >
-                        <h1>Register</h1>
-                        <button style={{ background: "blue", color: "white", borderRadius: "6%", padding: "5px", border:"solid 2px darkblue", textDecoration:"none"}} onClick={() => { navigate('/login') }}>
-                            <h1>Login</h1>
-                        </button>
-                    </div>
-                    <form onSubmit={handleRegister}>
-                    <div className="form-group">
-                            <label>First Name:</label>
-                            <input type='text' placeholder="First Name" className="form-control" onChange={(e) => setFirstName(e.target.value)}></input>
-                        </div>
-                        <div className="form-group">
-                            <label>Last Name:</label>
-                            <input type='text' placeholder="Last Name" className="form-control" onChange={(e) => setLastName(e.target.value)}></input>
-                        </div>
-                        <div className="form-group">
-                            <label>Enter Age:</label>
-                            <input type='number' placeholder="Age" className="form-control" onChange={(e)=> setAge(e.target.value)}></input>
-                        </div>
-                        <div className="form-group">
-                            <label>Enter Email:</label>
-                            <input type='email' placeholder="Email" className="form-control" onChange={(e)=> setEmail(e.target.value)}></input>
-                        </div>
-                        <br></br>
-                        <div className="d-grid">
-                            <input type='submit' value='Register' className="btn btn-primary rounded" />
-                        </div>
-                    </form>
-
-
+        <div className='registerdatacontainer'>
+            <div className="registercontainer">
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }} >
+                    <span ><FontAwesomeIcon icon={faLock} style={{ fontSize: "35px", alignItems: "center" }} /></span>
+                    <span><h2>Register</h2></span>
                 </div>
+                <input className="inputbox" placeholder="UserId" type="text" id="username" onChange={updateData} value={formdata.username} />
+                <div className='text-danger errormsg'>{formerror.username}</div>
 
+                <input className="inputbox" placeholder="Password" type="password" id="password" onChange={updateData} value={formdata.password} />
+                <div className='text-danger errormsg'>{formerror.password}</div><br></br>
+
+                <button className="registerbtn" onClick={registerFn}>Register</button>
+                <br></br>
             </div>
-        </>
+
+            <br></br>
+
+            {status && <div class="alert alert-success" role="alert">
+                <h2>Successfully Registered</h2>
+                
+            </div>
+            }
+        </div>
     )
 }
+
+export default Register
