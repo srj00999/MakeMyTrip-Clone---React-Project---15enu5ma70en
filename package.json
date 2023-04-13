@@ -1,9 +1,12 @@
 {
   "name": "react-boilerplate",
   "version": "1.0.0",
+  "homepage":"https://srj00999.github.io/MakeMyTrip-Clone---React-Project---15enu5ma70en",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "cypress run  --headless --reporter mochawesome",
     "start": "webpack-dev-server --mode development --watch --open --hot --port=3000",
     "build": "webpack --mode production"
@@ -50,6 +53,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^4.3.0",
     "file-loader": "6.2.0",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^4.5.0",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
