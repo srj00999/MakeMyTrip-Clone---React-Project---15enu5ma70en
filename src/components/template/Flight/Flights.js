@@ -13,10 +13,24 @@ export default function Flights() {
     });
 
     const [pageStatus, setPageStatus] = useState(false);
+    const [flightData, setFlightData] = useState([]);
 
     const localContext = useContext(DataAppContext);
     const { appState, setAppState } = localContext;
     const navigate = useNavigate();
+
+    
+    async function Api() {
+        const data = await fetch("https://content.newtonschool.co/v1/pr/63b85b1209f0a79e89e17e3a/flights");
+        const flite = await data.json();
+        // console.log(flite);
+        return setFlightData(flite);
+    }
+
+    useEffect(() => {
+        Api();
+    },
+        []);
 
 
     const updateData = (e) => {
@@ -91,7 +105,7 @@ export default function Flights() {
             </div>
             <div className="divline"></div>
 
-            {pageStatus && <div > <FlightData /></div>
+            {pageStatus && <div > <FlightData  flightData={flightData}/></div>
             }
 
         </>
